@@ -78,7 +78,7 @@ def gerar_palíndromos(tamanho: int) -> str:
     """
     s = big_o.datagen.strings(tamanho)
     mid = tamanho // 2
-    return s[:mid] + s[mid: tamanho - mid] + s[mid - 1:: -1]
+    return s[:mid] + s[mid : tamanho - mid] + s[mid - 1 :: -1]
 
 
 @lru_cache
