@@ -1,6 +1,6 @@
 def study_schedule(permanence_period, target_time):
     array_range = []
-    repeat_numbers = []
+    count = 0
 
     for index in permanence_period:
         array_range.append(list(index))
@@ -10,13 +10,11 @@ def study_schedule(permanence_period, target_time):
             if type(i) != int:
                 return None
 
-        numbers = range(index[0], index[1] + 1, 1)
+    if target_time is None:
+        return None
 
-        for num in numbers:
-            if target_time is None:
-                return None
-            if target_time == num:
-                repeat_numbers.append(num)
-                count = repeat_numbers.count(target_time)
+    for num in array_range:
+        if num[0] <= target_time <= num[1]:
+            count += 1
 
     return count
