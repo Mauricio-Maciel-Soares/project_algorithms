@@ -1,43 +1,28 @@
 def is_anagram(first_string, second_string):
+    if first_string == "" or second_string == "":
+        return False
 
     f_s = list(first_string.lower())
     s_s = list(second_string.lower())
 
-    def ordena(lts):
-        length_lst = len(lts)
-        if length_lst > 0:
-            quick_sort(lts, 0, length_lst - 1)
-        else:
-            return False
-
     def quick_sort(lts, start, end):
-        if start > end:
-            return
-        previous = start
-        posterior = end
-        pivot = lts[start]
+        if start < end:
+            previous = partition(lts, start, end)
+            quick_sort(lts, start, previous - 1)
+            quick_sort(lts, previous + 1, end)
 
-        while previous < posterior:
-            while previous < posterior and lts[posterior] > pivot:
-                posterior = posterior - 1
+    def partition(lst, start, end):
+        pivot = lst[end]
+        delimiter = start - 1
+        for index in range(start, end):
+            if lst[index] <= pivot:
+                delimiter += 1
+                lst[delimiter], lst[index] = lst[index], lst[delimiter]
+        lst[delimiter + 1], lst[end] = lst[end], lst[delimiter + 1]
 
-            if previous < posterior:
-                lts[previous] = lts[posterior]
-                previous = previous + 1
+        return delimiter + 1
 
-            while previous < posterior and lts[previous] <= pivot:
-                previous = previous + 1
-
-            if previous < posterior:
-                lts[posterior] = lts[previous]
-                posterior = posterior - 1
-
-            lts[previous] = pivot
-
-        quick_sort(lts, start, previous - 1)
-        quick_sort(lts, previous + 1, end)
-
-    ordena(f_s)
-    ordena(s_s)
+    quick_sort(f_s, 0, len(f_s) - 1)
+    quick_sort(s_s, 0, len(s_s) - 1)
 
     return f_s == s_s
