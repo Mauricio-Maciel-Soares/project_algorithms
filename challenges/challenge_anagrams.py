@@ -14,11 +14,11 @@ def is_anagram(first_string, second_string):
                 if index[j] > index[j + 1]:
                     index[j], index[j + 1] = index[j + 1], index[j]
 
-    equality = True
-    for i in range(len(f_s)):
-        if f_s[i] == s_s[i] and equality:
-            i += 1
-        else:
-            equality = False
+    # equality = True
+    # for i in range(len(f_s)):
+    #     if f_s[i] == s_s[i] and equality:
+    #         i += 1
+    #     else:
+    #         equality = False
 
-    return equality
+    return f_s == s_s
