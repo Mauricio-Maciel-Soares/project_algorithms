@@ -12,6 +12,7 @@ def is_anagram(first_string, second_string):
 
     return f_s == s_s
 
+
 def quick_sort(lts, start, end):
     if start < end:
         previous = partition(lts, start, end)
